@@ -1,7 +1,7 @@
 bl_info = {
     "name": "Remove unused Vertex Groups",
-    "author": "CoDEmanX (ported to Blender 2.8 by Raziel)",
-    "version": (1, 0),
+    "author": "CoDEmanX (ported to Blender 2.8 by raziel2001au)",
+    "version": (1, 1),
     "blender": (2, 80, 0),
     "location": "Properties Editor > Object data > Vertex Groups > Specials menu",
     "description": "Delete the Vertex Groups with no assigned weights from the active object",
@@ -40,6 +40,10 @@ class OBJECT_OT_vertex_group_remove_unused(Operator):
                         vgroup_used[vgs.find(g_name[0:-1] + "R")] = True
                     if g_name.endswith(".R"):
                         vgroup_used[vgs.find(g_name[0:-1] + "L")] = True
+                    if g_name.endswith(".l"):
+                        vgroup_used[vgs.find(g_name[0:-1] + "r")] = True
+                    if g_name.endswith(".r"):
+                        vgroup_used[vgs.find(g_name[0:-1] + "l")] = True
         
         for i, used in sorted(vgroup_used.items(), reverse=True):
             if not used:
