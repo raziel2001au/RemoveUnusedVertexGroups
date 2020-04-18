@@ -1,7 +1,7 @@
 bl_info = {
     "name": "Remove unused Vertex Groups",
     "author": "CoDEmanX (ported to Blender 2.8 by raziel2001au)",
-    "version": (1, 1),
+    "version": (1, 2),
     "blender": (2, 80, 0),
     "location": "Properties Editor > Object data > Vertex Groups > Specials menu",
     "description": "Delete the Vertex Groups with no assigned weights from the active object",
@@ -62,7 +62,7 @@ def draw_func(self, context):
 def register():
     from bpy.utils import register_class
     register_class(OBJECT_OT_vertex_group_remove_unused)
-    bpy.types.MESH_MT_vertex_group_context_menu.append(draw_func)
+    bpy.types.MESH_MT_vertex_group_context_menu.prepend(draw_func)
 
 
 def unregister():
